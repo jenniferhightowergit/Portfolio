@@ -3,6 +3,10 @@ In 2023 I became interested in learning more in Machine Learning and AI.  As a D
 
 Feel free to take a look!
 
+### Exploratory Data Analysis
+
+
+
 ### Supervised Learning
 
 #### 1. Decission Trees : https://github.com/jenniferhightowergit/Portfolio/blob/main/TravelPAckagePurchasePredictionJenniferHightower.ipynb
