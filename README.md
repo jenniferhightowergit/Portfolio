@@ -25,7 +25,7 @@ The "Visit with us" travel company dataset is used to analyze the customers' inf
 
 
 
-
+#### 2. test : https://htmlpreview.github.io/?https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_RidgeLasso.html
 
 
 
