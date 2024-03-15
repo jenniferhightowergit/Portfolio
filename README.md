@@ -11,7 +11,7 @@ Feel free to take a look!
 
 #### 1. Decission Trees: 
 
-https://htmlpreview.github.io/?https://github.com/jenniferhightowergit/TravelPAckagePurchasePredictionJenniferHightower.html
+https://html-preview.github.io/?url=https://github.com/jenniferhightowergit/Portfolio/blob/main/TravelPAckagePurchasePredictionJenniferHightower.html
 
 The "Visit with us" travel company dataset is used to analyze the customers' information and build a model to predict the potential customer who is going to purchase the newly introduced package.
 ** Skills & Tools Covered
