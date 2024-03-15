@@ -6,10 +6,9 @@ Feel free to take a look!
 ### Exploratory Data Analysis
 
 
-
 ### Supervised Learning
 
-#### 1. Decission Trees: 
+#### 1. Decision Trees - Travel Purchase Prediction: 
 
 https://html-preview.github.io/?url=https://github.com/jenniferhightowergit/Portfolio/blob/main/TravelPAckagePurchasePredictionJenniferHightower.html
 
@@ -28,11 +27,12 @@ The "Visit with us" travel company dataset is used to analyze the customers' inf
 
 
 
-#### 2. Logistic Regression with Neural Networking: 
+#### 2. Logistic Regression with Neural Networking - Bank Churn: 
 
 https://htmlpreview.github.io/?https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_RidgeLasso.html
 
-To understand why customers leave the bank and possibly make recommendations on how to keep current customers.
+The goal is to understand why customers leave the bank and possibly make recommendations on how to keep current customers.
+
 ** Skills & Tools Covered
 - EDA
 - Data Preprocessing
@@ -43,5 +43,20 @@ To understand why customers leave the bank and possibly make recommendations on 
 - Using SMOTE to improve the model
 - Using Ridge techniques to improve model
 - Using Adam, relu and different activation functions like tanh and sigmoid to improve the accuracy of the model
+
+
+
+### Unsupervised Learning
+
+#### 1. Kmeans vs Hierarchical Clustering - Bank Customer Analysis and Predictions:
+
+https://html-preview.github.io/?url=https://github.com/jenniferhightowergit/Portfolio/blob/main/AllLifeBank_KMeans.html
+
+** Skills & Tools Covered
+- EDA
+- Data Preprocessing
+- K Means Clustering
+- Hierarchical Clustering using Dendogram
+
 
 
