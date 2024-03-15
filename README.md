@@ -25,7 +25,17 @@ The "Visit with us" travel company dataset is used to analyze the customers' inf
 
 
 
-#### 2. test : https://htmlpreview.github.io/?https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_RidgeLasso.html
-
+#### 2.  : https://htmlpreview.github.io/?https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_RidgeLasso.html
+To understand why customers leave the bank and possibly make recommendations on how to keep current customers.
+** Skills & Tools Covered
+- EDA
+- Data Preprocessing
+- Customer Profiling
+- Logistic Regression
+- K-Fold validation to estimate the model's performance
+- Deep learning framework using Keras API, and Neural Network Architecture using multiple hidden layers
+- Using SMOTE to improve the model
+- Using Ridge techniques to improve model
+- Using Adam, relu and different activation functions like tanh and sigmoid to improve the accuracy of the model
 
 
