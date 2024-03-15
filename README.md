@@ -9,7 +9,7 @@ Feel free to take a look!
 
 ### Supervised Learning
 
-#### 1. Decission Trees : https://github.com/jenniferhightowergit/Portfolio/blob/main/TravelPAckagePurchasePredictionJenniferHightower.ipynb
+#### 1. Decission Trees: https://github.com/jenniferhightowergit/Portfolio/blob/main/TravelPAckagePurchasePredictionJenniferHightower.ipynb
 The "Visit with us" travel company dataset is used to analyze the customers' information and build a model to predict the potential customer who is going to purchase the newly introduced package.
 ** Skills & Tools Covered
 - EDA
@@ -25,7 +25,8 @@ The "Visit with us" travel company dataset is used to analyze the customers' inf
 
 
 
-#### 2.  : https://htmlpreview.github.io/?https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_RidgeLasso.html
+#### 2. Logistic Regression with Neural Networking: 
+https://htmlpreview.github.io/?https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_RidgeLasso.html
 To understand why customers leave the bank and possibly make recommendations on how to keep current customers.
 ** Skills & Tools Covered
 - EDA
