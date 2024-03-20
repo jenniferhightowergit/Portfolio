@@ -10,7 +10,7 @@ Feel free to take a look!
 
 #### 1. Decision Trees - Travel Purchase Prediction: 
 
-https://html-preview.github.io/?url=https://github.com/jenniferhightowergit/Portfolio/blob/main/TravelPAckagePurchasePredictionJenniferHightower.html
+https://github.com/jenniferhightowergit/Portfolio/blob/main/TravelPAckagePurchasePredictionJenniferHightower.ipynb
 
 The "Visit with us" travel company dataset is used to analyze the customers' information and build a model to predict the potential customer who is going to purchase the newly introduced package.
 ** Skills & Tools Covered
@@ -29,7 +29,7 @@ The "Visit with us" travel company dataset is used to analyze the customers' inf
 
 #### 2. Logistic Regression with Neural Networking - Bank Churn: 
 
-https://htmlpreview.github.io/?https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_RidgeLasso.html
+https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_JenniferHightower.ipynb
 
 The goal is to understand why customers leave the bank and possibly make recommendations on how to keep current customers.
 
@@ -50,7 +50,7 @@ The goal is to understand why customers leave the bank and possibly make recomme
 
 #### 1. Kmeans vs Hierarchical Clustering - Bank Customer Analysis and Predictions:
 
-https://html-preview.github.io/?url=https://github.com/jenniferhightowergit/Portfolio/blob/main/AllLifeBank_KMeans.html
+https://github.com/jenniferhightowergit/Portfolio/blob/main/AllLifeBank_JenniferHightower.ipynb
 
 ** Skills & Tools Covered
 - EDA
