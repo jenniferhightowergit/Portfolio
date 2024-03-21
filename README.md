@@ -110,13 +110,20 @@ https://github.com/jenniferhightowergit/Portfolio/blob/main/JenniferHightowerNLP
 
 #### 1. Kmeans vs Hierarchical Clustering - Bank Customer Analysis and Predictions:
 
-https://github.com/jenniferhightowergit/Portfolio/blob/main/AllLifeBank_JenniferHightower.ipynb
+https://github.com/jenniferhightowergit/Portfolio/blob/main/PlantSeedlingClassification_JenniferHightower.ipynb
 
 ** Skills & Tools Covered
 - EDA
-- Data Preprocessing
+- Data Preprocessing - 
 - K Means Clustering
 - Hierarchical Clustering using Dendogram
 
 
+#### 2. Convolutional Neural Network (CNN) - Plant Seedling Classification:
 
+https://github.com/jenniferhightowergit/Portfolio/blob/main/AllLifeBank_JenniferHightower.ipynb
+
+** Skills & Tools Covered
+- EDA
+- Data Preprocessing - on images
+- CNN using hidden layers and different activations like relu and softmax with Adam optimizer  
