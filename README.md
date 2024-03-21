@@ -10,6 +10,7 @@ https://github.com/jenniferhightowergit/Portfolio/blob/main/DeepLearningNotes.ip
 https://github.com/jenniferhightowergit/Portfolio/blob/main/InferentialStatistics.ipynb
 https://github.com/jenniferhightowergit/Portfolio/blob/main/Understanding_CNNs.ipynb
 https://github.com/jenniferhightowergit/Portfolio/blob/main/Probability.ipynb
+https://github.com/jenniferhightowergit/Portfolio/blob/main/NLPNotes.ipynb
 
 
 ### Supervised Learning
