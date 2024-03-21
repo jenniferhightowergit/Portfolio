@@ -65,7 +65,7 @@ The goal is to understand why customers leave the bank and possibly make recomme
 - Using Ridge techniques to improve model
 - Using Adam, relu and different activation functions like tanh and sigmoid to improve the accuracy of the model
 
-#### 4. Testing different Decision Tree Models:
+#### 4. Testing different Decision Tree Models - Credit Card Churn:
 
 https://github.com/jenniferhightowergit/Portfolio/blob/main/CreditCardChurn%20JenniferHightower.ipynb
 
