@@ -78,7 +78,16 @@ https://github.com/jenniferhightowergit/Portfolio/blob/main/CreditCardChurn%20Je
 - Adaboost
 - dtree
 
-#### 5. NLP - Airlines Sentiment Analysis
+#### 5. Decision Tree - Personal Loan Campaign
+
+(https://github.com/jenniferhightowergit/Portfolio/blob/main/PersonalLoanCampaignJenniferHightower.ipynb)
+
+** Skills & Tools Covered
+- EDA
+- Data Preprocessing
+- dtree
+
+#### 6. NLP - Airlines Sentiment Analysis
 
 https://github.com/jenniferhightowergit/Portfolio/blob/main/JenniferHightowerNLPAirlinesv2-Short.ipynb
 
