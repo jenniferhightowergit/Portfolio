@@ -5,6 +5,7 @@ Feel free to take a look!
 
 ### On going education
 
+https://github.com/jenniferhightowergit/Portfolio/blob/main/LinearAlgebra.ipynb
 https://github.com/jenniferhightowergit/Portfolio/blob/main/DeepLearningNotes.ipynb
 https://github.com/jenniferhightowergit/Portfolio/blob/main/InferentialStatistics.ipynb
 https://github.com/jenniferhightowergit/Portfolio/blob/main/Understanding_CNNs.ipynb
