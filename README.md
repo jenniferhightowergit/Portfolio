@@ -76,6 +76,22 @@ https://github.com/jenniferhightowergit/Portfolio/blob/main/CreditCardChurn%20Je
 - Adaboost
 - dtree
 
+#### 5. NLP - Airlines Sentiment Analysis
+
+https://github.com/jenniferhightowergit/Portfolio/blob/main/JenniferHightowerNLPAirlinesv2-Short.ipynb
+
+** Skills & Tools Covered
+- EDA
+- Data Preprocessing
+- Word Cloud (Positive and Negative)
+- Word Frequency (Positive and Negative)
+- Text Vectorization
+- Logistic Regression
+- Random Forest
+- XGboost
+- SVM
+- Multinomial Naive Bayes (MNB)
+- LSTM
 
 
 
