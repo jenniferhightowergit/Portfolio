@@ -10,16 +10,28 @@ https://github.com/jenniferhightowergit/Portfolio/blob/main/InferentialStatistic
 https://github.com/jenniferhightowergit/Portfolio/blob/main/Understanding_CNNs.ipynb
 https://github.com/jenniferhightowergit/Portfolio/blob/main/Probability.ipynb
 
-### Exploratory Data Analysis
-
 
 ### Supervised Learning
 
-#### 1. Decision Trees - Travel Purchase Prediction: 
+#### 1. Linear Regression - Cars4U:
+
+https://github.com/jenniferhightowergit/Portfolio/blob/main/JenniferHightowerCars4U.ipynb
+
+** Skills & Tools Covered
+- EDA
+- Data Preprocessing
+- Customer Profiling
+- Linear Regression
+
+
+
+
+#### 2. Decision Trees - Travel Purchase Prediction: 
 
 https://github.com/jenniferhightowergit/Portfolio/blob/main/TravelPAckagePurchasePredictionJenniferHightower.ipynb
 
-The "Visit with us" travel company dataset is used to analyze the customers' information and build a model to predict the potential customer who is going to purchase the newly introduced package.
+The "Visit with us" travel company dataset is used to analyze the customers' information and build a model to predict the potential customer who is going to purchase the newly introduced package
+.
 ** Skills & Tools Covered
 - EDA
 - Data Preprocessing
@@ -34,7 +46,7 @@ The "Visit with us" travel company dataset is used to analyze the customers' inf
 
 
 
-#### 2. Logistic Regression with Neural Networking - Bank Churn: 
+#### 3. Logistic Regression with Neural Networking - Bank Churn: 
 
 https://github.com/jenniferhightowergit/Portfolio/blob/main/BankChurn_JenniferHightower.ipynb
 
@@ -51,7 +63,7 @@ The goal is to understand why customers leave the bank and possibly make recomme
 - Using Ridge techniques to improve model
 - Using Adam, relu and different activation functions like tanh and sigmoid to improve the accuracy of the model
 
-#### 3. Testing different Decision Tree Models:
+#### 4. Testing different Decision Tree Models:
 
 https://github.com/jenniferhightowergit/Portfolio/blob/main/CreditCardChurn%20JenniferHightower.ipynb
 
