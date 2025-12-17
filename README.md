@@ -5,6 +5,20 @@ I'm currently working on my Master's in Data Science at the University of North 
 
 Feel free to take a look!
 
+### Chat bot builds
+
+I have a Jupyter Notebook file that I initially built Wolf - a Yuautja chatbot using Python, YAML, OPenai API, and Elevenlabs (for vocalisation) API as a proof of concept
+I then built Wolf with React using Mongodb for the backend memory using YAML and jsonl files.  
+
+### Wolf CHat bot
+
+- YAML
+- Open AI API
+- Eleven Labs API
+- Python
+- CSS
+- HTML
+
 ### On going education
 
 https://github.com/jenniferhightowergit/Portfolio/blob/main/LinearAlgebra.ipynb
