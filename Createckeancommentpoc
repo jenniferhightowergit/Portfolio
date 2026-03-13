@@ -1,0 +1,78 @@
+1. symspellpy.  mispelled words
+
+from symspellpy import SymSpell, Verbosity
+
+sym_spell = SymSpell(max_dictionary_edit_distance=2)
+
+# Load a word list
+sym_spell.load_dictionary("frequency_dictionary_en_82_765.txt", 0, 1)
+
+text = "transfrmer comunication problm"
+
+corrected = []
+for word in text.split():
+    suggestions = sym_spell.lookup(word, Verbosity.CLOSEST)
+    if suggestions:
+        corrected.append(suggestions[0].term)
+    else:
+        corrected.append(word)
+
+print(" ".join(corrected))
+
+2. Add a meter-industry dictionary
+
+custom_words = [
+    "transformer",
+    "meter",
+    "endpoint",
+    "firmware",
+    "tamper",
+    "voltage",
+    "communication",
+    "rfmesh"
+]
+
+for word in custom_words:
+    sym_spell.create_dictionary_entry(word, 1)
+
+3. Handle abbreviations separately
+
+abbrev_dict = {
+    "mtr": "meter",
+    "xfmr": "transformer",
+    "fw": "firmware",
+    "comms": "communication",
+    "vltg": "voltage"
+}
+
+words = text.split()
+
+words = [abbrev_dict.get(w, w) for w in words]
+
+
+4. Optional: fuzzy matching for weird words
+
+pip install rapidfuzz
+
+from rapidfuzz import process
+
+vocab = ["transformer", "meter", "communication", "firmware"]
+
+match = process.extractOne("transfrmer", vocab)
+
+print(match)
+
+5. You can also track unknown words automatically.
+
+example:
+
+Word
+Count
+rmesh
+87
+vltg
+52
+mtrr
+14
+
+
