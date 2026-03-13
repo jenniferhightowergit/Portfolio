@@ -5,7 +5,7 @@
 import pandas as pd
 import numpy as np
 
-
+df["column1"] = df["column1"].str.replace(r"[^a-z0-9\s]", "", regex=True)
 
 
 
