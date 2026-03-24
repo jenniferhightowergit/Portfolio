@@ -1,0 +1,11 @@
+import re
+
+strips out bad characters
+
+pivot_df['programid'] = (
+    pivot_df['programid']
+    .astype(str)
+    .str.replace(r'[^\x00-\x7F]+', '', regex=True)  # remove weird unicode
+    .str.replace(r'[\\/*?:\[\]]', '', regex=True)  # remove Excel illegal chars
+    .str.strip()
+)
