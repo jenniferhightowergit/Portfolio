@@ -1,0 +1,75 @@
+import pandas as pd
+import numpy as np
+import re
+
+# Sample dataframe
+df = pd.DataFrame({
+    'Customer Name ': ['  john smith', 'JANE DOE  ', '  Bob   Johnson'],
+    'State': ['tx', 'Texas', 'TX '],
+    'Amount ': ['100', ' 200 ', '300.50'],
+    'Status': ['Y', 'N', 'yes'],
+    'Notes': ['N/A', '', 'unknown']
+})
+
+# ----------------------------
+# 🧹 1. Clean column names
+# ----------------------------
+df.columns = (
+    df.columns
+    .str.strip()
+    .str.lower()
+    .str.replace(r'[^a-z0-9]+', '_', regex=True)
+)
+
+# ----------------------------
+# 🧼 2. Trim + normalize whitespace in ALL string columns
+# ----------------------------
+for col in df.select_dtypes(include='object'):
+    df[col] = (
+        df[col]
+        .str.strip()
+        .str.replace(r'\s+', ' ', regex=True)
+    )
+
+# ----------------------------
+# 🔄 3. Standardize null values
+# ----------------------------
+null_values = ['n/a', 'na', 'null', 'unknown', '']
+
+df = df.replace(null_values, np.nan)
+
+# ----------------------------
+# 🔤 4. Case formatting
+# ----------------------------
+df['customer_name'] = df['customer_name'].str.title()
+
+# ----------------------------
+# 🗺️ 5. Standardize values (example: state)
+# ----------------------------
+state_map = {
+    'tx': 'TX',
+    'texas': 'TX'
+}
+
+df['state'] = df['state'].str.lower().map(state_map)
+
+# ----------------------------
+# 🔢 6. Convert data types
+# ----------------------------
+df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
+
+# ----------------------------
+# ✅ 7. Normalize booleans
+# ----------------------------
+df['status'] = df['status'].str.lower().map({
+    'y': 1,
+    'yes': 1,
+    'n': 0,
+    'no': 0
+})
+
+# ----------------------------
+# 🧪 Final check
+# ----------------------------
+print(df.info())
+print(df.head())
