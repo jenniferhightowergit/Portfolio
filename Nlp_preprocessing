@@ -1,0 +1,43 @@
+from itertools import product
+
+def generate_variants(word):
+    variants = set()
+
+    # basic forms
+    variants.add(word)
+    variants.add(word.lower())
+    variants.add(word.upper())
+    variants.add(word.capitalize())
+
+    # pluralization (simple)
+    if not word.endswith('s'):
+        variants.add(word + 's')
+
+    # common suffixes
+    suffixes = ['ing', 'ed']
+    for s in suffixes:
+        variants.add(word + s)
+
+    return list(variants)
+
+
+keywords = ['tamper', 'vandal', 'disconnect']
+
+variant_dict = {k: generate_variants(k) for k in keywords}
+
+print(variant_dict)
+
+
+dadata driven variants:
+from collections import Counter
+import re
+
+def find_variants(comments, keyword):
+    pattern = re.compile(rf'\b\w*{keyword}\w*\b', re.IGNORECASE)
+    matches = []
+
+    for c in comments:
+        matches.extend(pattern.findall(c))
+
+    return Counter(matches)
+
