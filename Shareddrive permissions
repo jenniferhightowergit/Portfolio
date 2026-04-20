@@ -1,4 +1,43 @@
 
+from pathlib import Path
+
+folder = Path(r"\\server\share\your_folder")
+test_file = folder / "__perm_test__.txt"
+
+print("Testing folder:", folder)
+
+# 1. Create file
+try:
+    with open(test_file, "w", encoding="utf-8") as f:
+        f.write("first write\n")
+    print("Create: OK")
+except Exception as e:
+    print("Create: FAILED ->", type(e).__name__, e)
+
+# 2. Overwrite file
+try:
+    with open(test_file, "w", encoding="utf-8") as f:
+        f.write("overwritten\n")
+    print("Overwrite: OK")
+except Exception as e:
+    print("Overwrite: FAILED ->", type(e).__name__, e)
+
+# 3. Read file back
+try:
+    with open(test_file, "r", encoding="utf-8") as f:
+        content = f.read()
+    print("Read back: OK ->", repr(content))
+except Exception as e:
+    print("Read back: FAILED ->", type(e).__name__, e)
+
+# 4. Delete file
+try:
+    test_file.unlink()
+    print("Delete: OK")
+except Exception as e:
+    print("Delete: FAILED ->", type(e).__name__, e)
+
+
 
 from pathlib import Path
 import os
