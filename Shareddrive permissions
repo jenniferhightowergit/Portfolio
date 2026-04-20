@@ -1,0 +1,96 @@
+from pathlib import Path
+import os
+import tempfile
+import traceback
+
+def test_path_permissions(path_str):
+    path = Path(path_str)
+    result = {
+        "path": str(path),
+        "exists": path.exists(),
+        "is_file": path.is_file(),
+        "is_dir": path.is_dir(),
+        "read_access": None,
+        "write_access": None,
+        "list_access": None,
+        "delete_test": None,
+        "details": []
+    }
+
+    if not path.exists():
+        result["details"].append("Path does not exist or is not reachable.")
+        return result
+
+    # os.access is helpful, but not always the final truth on network/shared drives
+    result["read_access"] = os.access(path, os.R_OK)
+    result["write_access"] = os.access(path, os.W_OK)
+
+    try:
+        if path.is_dir():
+            # Test list/read folder contents
+            try:
+                items = list(path.iterdir())
+                result["list_access"] = True
+                result["details"].append(f"Folder listed successfully. Item count: {len(items)}")
+            except Exception as e:
+                result["list_access"] = False
+                result["details"].append(f"Could not list folder contents: {e}")
+
+            # Test write by creating and deleting a temp file
+            test_file = path / "__permission_test__.tmp"
+            try:
+                with open(test_file, "w") as f:
+                    f.write("test")
+                result["details"].append("Successfully created a test file.")
+                
+                try:
+                    test_file.unlink()
+                    result["delete_test"] = True
+                    result["details"].append("Successfully deleted the test file.")
+                except Exception as e:
+                    result["delete_test"] = False
+                    result["details"].append(f"Created file but could not delete it: {e}")
+
+            except Exception as e:
+                result["details"].append(f"Could not create a test file: {e}")
+
+        elif path.is_file():
+            # Test file read
+            try:
+                with open(path, "rb") as f:
+                    f.read(100)
+                result["details"].append("Successfully opened file for reading.")
+            except Exception as e:
+                result["details"].append(f"Could not read file: {e}")
+
+            # Test file append/write
+            try:
+                with open(path, "ab") as f:
+                    pass
+                result["details"].append("Successfully opened file for writing/appending.")
+            except Exception as e:
+                result["details"].append(f"Could not open file for writing/appending: {e}")
+
+    except Exception as e:
+        result["details"].append(f"Unexpected error: {e}")
+        result["details"].append(traceback.format_exc())
+
+    return result
+
+
+# Example usage
+paths_to_test = [
+    r"\\shared_drive\folder1",
+    r"\\shared_drive\folder2",
+    r"\\shared_drive\folder2\somefile.xlsx"
+]
+
+for p in paths_to_test:
+    print("=" * 80)
+    result = test_path_permissions(p)
+    for k, v in result.items():
+        if k != "details":
+            print(f"{k}: {v}")
+    print("details:")
+    for d in result["details"]:
+        print(f" - {d}")
