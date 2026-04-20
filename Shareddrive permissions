@@ -1,3 +1,85 @@
+
+
+from pathlib import Path
+import os
+import traceback
+
+def test_folder_permissions(path_str):
+    path = Path(path_str)
+
+    result = {
+        "path": str(path),
+        "is_dir": None,
+        "os_read": None,
+        "os_write": None,
+        "can_list": False,
+        "can_create_file": False,
+        "can_delete_file": False,
+        "notes": []
+    }
+
+    # Try to determine if it's a directory, but don't trust exists() alone
+    try:
+        result["is_dir"] = path.is_dir()
+    except Exception as e:
+        result["notes"].append(f"is_dir check failed: {e}")
+
+    # os.access can still be useful as a hint
+    try:
+        result["os_read"] = os.access(path, os.R_OK)
+        result["os_write"] = os.access(path, os.W_OK)
+    except Exception as e:
+        result["notes"].append(f"os.access failed: {e}")
+
+    # Real test: can we list contents?
+    try:
+        items = list(path.iterdir())
+        result["can_list"] = True
+        result["notes"].append(f"Listed folder successfully. Item count: {len(items)}")
+    except Exception as e:
+        result["notes"].append(f"Could not list folder: {type(e).__name__}: {e}")
+
+    # Real test: can we create/delete a temp file?
+    test_file = path / "__permission_test__.tmp"
+    try:
+        with open(test_file, "w") as f:
+            f.write("test")
+        result["can_create_file"] = True
+        result["notes"].append("Created temp file successfully.")
+    except Exception as e:
+        result["notes"].append(f"Could not create temp file: {type(e).__name__}: {e}")
+
+    if result["can_create_file"]:
+        try:
+            test_file.unlink()
+            result["can_delete_file"] = True
+            result["notes"].append("Deleted temp file successfully.")
+        except Exception as e:
+            result["notes"].append(f"Could not delete temp file: {type(e).__name__}: {e}")
+
+    return result
+
+
+folders_to_test = [
+    r"\\server\share\folder1",
+    r"\\server\share\folder2",
+    r"\\server\share\folder3"
+]
+
+for folder in folders_to_test:
+    print("\n" + "=" * 90)
+    result = test_folder_permissions(folder)
+    for k, v in result.items():
+        if k != "notes":
+            print(f"{k}: {v}")
+    print("notes:")
+    for note in result["notes"]:
+        print(" -", note)
+
+
+
+
+
 from pathlib import Path
 import os
 import pandas as pd
