@@ -1,96 +1,79 @@
 from pathlib import Path
 import os
-import tempfile
-import traceback
+import pandas as pd
 
-def test_path_permissions(path_str):
-    path = Path(path_str)
+def test_file_permissions(file_path):
+    path = Path(file_path)
+
     result = {
         "path": str(path),
         "exists": path.exists(),
         "is_file": path.is_file(),
-        "is_dir": path.is_dir(),
-        "read_access": None,
-        "write_access": None,
-        "list_access": None,
-        "delete_test": None,
-        "details": []
+        "extension": path.suffix.lower(),
+        "os_read": None,
+        "os_write": None,
+        "can_open_read": False,
+        "can_open_append": False,
+        "can_rename": False,
+        "can_delete": False,
+        "parent_exists": path.parent.exists(),
+        "notes": ""
     }
 
     if not path.exists():
-        result["details"].append("Path does not exist or is not reachable.")
+        result["notes"] = "Path does not exist or is not reachable"
         return result
 
-    # os.access is helpful, but not always the final truth on network/shared drives
-    result["read_access"] = os.access(path, os.R_OK)
-    result["write_access"] = os.access(path, os.W_OK)
+    if not path.is_file():
+        result["notes"] = "Path exists but is not a file"
+        return result
 
+    result["os_read"] = os.access(path, os.R_OK)
+    result["os_write"] = os.access(path, os.W_OK)
+
+    # Test read
     try:
-        if path.is_dir():
-            # Test list/read folder contents
-            try:
-                items = list(path.iterdir())
-                result["list_access"] = True
-                result["details"].append(f"Folder listed successfully. Item count: {len(items)}")
-            except Exception as e:
-                result["list_access"] = False
-                result["details"].append(f"Could not list folder contents: {e}")
-
-            # Test write by creating and deleting a temp file
-            test_file = path / "__permission_test__.tmp"
-            try:
-                with open(test_file, "w") as f:
-                    f.write("test")
-                result["details"].append("Successfully created a test file.")
-                
-                try:
-                    test_file.unlink()
-                    result["delete_test"] = True
-                    result["details"].append("Successfully deleted the test file.")
-                except Exception as e:
-                    result["delete_test"] = False
-                    result["details"].append(f"Created file but could not delete it: {e}")
-
-            except Exception as e:
-                result["details"].append(f"Could not create a test file: {e}")
-
-        elif path.is_file():
-            # Test file read
-            try:
-                with open(path, "rb") as f:
-                    f.read(100)
-                result["details"].append("Successfully opened file for reading.")
-            except Exception as e:
-                result["details"].append(f"Could not read file: {e}")
-
-            # Test file append/write
-            try:
-                with open(path, "ab") as f:
-                    pass
-                result["details"].append("Successfully opened file for writing/appending.")
-            except Exception as e:
-                result["details"].append(f"Could not open file for writing/appending: {e}")
-
+        with open(path, "rb") as f:
+            f.read(100)
+        result["can_open_read"] = True
     except Exception as e:
-        result["details"].append(f"Unexpected error: {e}")
-        result["details"].append(traceback.format_exc())
+        result["notes"] += f"Read failed: {e} | "
+
+    # Test append/write
+    try:
+        with open(path, "ab") as f:
+            pass
+        result["can_open_append"] = True
+    except Exception as e:
+        result["notes"] += f"Append failed: {e} | "
+
+    # Test rename (good indicator of write-level control on file)
+    temp_name = path.with_name(path.stem + "__permtest__" + path.suffix)
+    try:
+        os.rename(path, temp_name)
+        os.rename(temp_name, path)
+        result["can_rename"] = True
+    except Exception as e:
+        result["notes"] += f"Rename failed: {e} | "
+
+    # Test delete is dangerous on real files, so we DO NOT do it here
+    # unless you explicitly want a destructive test.
+    result["can_delete"] = None
+
+    if result["notes"].endswith(" | "):
+        result["notes"] = result["notes"][:-3]
 
     return result
 
 
-# Example usage
-paths_to_test = [
-    r"\\shared_drive\folder1",
-    r"\\shared_drive\folder2",
-    r"\\shared_drive\folder2\somefile.xlsx"
+# Example: list the exact files you want to test
+files_to_test = [
+    r"\\server\share\folder\a.xlsx",
+    r"\\server\share\folder\b.cab",
+    r"\\server\share\folder\subfolder\c.xlsx"
 ]
 
-for p in paths_to_test:
-    print("=" * 80)
-    result = test_path_permissions(p)
-    for k, v in result.items():
-        if k != "details":
-            print(f"{k}: {v}")
-    print("details:")
-    for d in result["details"]:
-        print(f" - {d}")
+results = [test_file_permissions(f) for f in files_to_test]
+
+df = pd.DataFrame(results)
+print(df)
