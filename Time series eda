@@ -1,0 +1,87 @@
+meyer level summary
+
+meter_df = event_table.groupby('meter_id').agg(
+    first_deploy_date = ('event_date', lambda x: x[event_table.loc[x.index, 'event_type']=='deploy'].min()),
+    first_ncm_date = ('event_date', lambda x: x[event_table.loc[x.index, 'event_type']=='ncm'].min()),
+    first_change_date = ('event_date', lambda x: x[event_table.loc[x.index, 'event_type']=='meter_change'].min()),
+    total_changes = ('event_type', lambda x: (x == 'meter_change').sum()),
+    total_ncms = ('event_type', lambda x: (x == 'ncm').sum())
+).reset_index()
+
+
+meter_df['days_to_first_failure'] = (
+    meter_df['first_ncm_date'] - meter_df['first_deploy_date']
+).dt.days
+
+meter_df['days_to_first_change'] = (
+    meter_df['first_change_date'] - meter_df['first_deploy_date']
+).dt.days
+
+
+
+step 2 distribution
+
+meter_df['days_to_first_failure'].hist(bins=50)
+
+
+
+step 3
+
+binning
+
+bins = [0, 30, 90, 180, 365, 9999]
+labels = ['0-30d', '30-90d', '90-180d', '180-365d', '1y+']
+
+meter_df['failure_bucket'] = pd.cut(
+    meter_df['days_to_first_failure'],
+    bins=bins,
+    labels=labels
+)
+
+analyze
+
+meter_df['failure_bucket'].value_counts()
+
+
+compare ncm vs non ncm
+
+create flag
+meter_df['has_ncm'] = meter_df['total_ncms'] > 0
+
+meter_df.groupby('has_ncm')['days_to_first_change'].mean()
+
+
+
+step 5 look at repeat failures
+
+
+meter_df['total_changes'].value_counts()
+
+
+meter_df.groupby('failure_bucket')['total_changes'].mean()
+
+
+step 6 
+
+seasonality
+
+event_table[event_table['event_type'] == 'ncm'] \
+    .groupby('event_month_name') \
+    .size()
+
+
+step 7 correlation
+
+meter_df[['days_to_first_failure', 'total_changes', 'total_ncms']].corr()
+
+
+
+
+
+
+
+
+
+
+
+
