@@ -1,0 +1,23 @@
+
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+for col in df.columns:
+    # try to convert to numeric
+    temp = pd.to_numeric(df[col], errors='coerce')
+
+    # skip if column is basically not numeric
+    if temp.notna().sum() == 0:
+        continue
+
+    print(f"Plotting: {col}")
+
+    fig, axes = plt.subplots(2, 1, figsize=(8, 5), sharex=True)
+
+    sns.boxplot(x=temp, ax=axes[0])
+    sns.histplot(x=temp, ax=axes[1], kde=True)
+
+    plt.tight_layout()
+    plt.show()
