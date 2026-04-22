@@ -1,0 +1,42 @@
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(3, 2, figsize=(18, 18))
+fig.suptitle('Stacked Bar Plots for Categorical Variables')
+
+plot_cols = [
+    'hardware',
+    'event_type',
+    'collector',
+    'category4',
+    'category5',
+    'category6'
+]
+
+for ax, col in zip(axes.flatten(), plot_cols):
+    
+    counts = results[col]['counts'].copy()
+    
+    # 🔥 limit to top 10 for speed/readability
+    counts['total'] = counts.sum(axis=1)
+    counts = counts.sort_values('total', ascending=False).head(10)
+    counts = counts.drop(columns='total')
+    
+    counts.plot(
+        kind='bar',
+        stacked=True,
+        ax=ax,
+        color=['#d62728', '#ff7f0e', '#1f77b4'],
+        legend=False
+    )
+    
+    ax.set_title(col)
+    ax.set_ylabel('Count')
+    ax.tick_params(axis='x', labelrotation=45)
+
+# one legend
+handles, labels = axes[0, 0].get_legend_handles_labels()
+fig.legend(handles, ['NCM within MC', 'MC only', 'Non-MC'], loc='upper right')
+
+plt.tight_layout()
+plt.subplots_adjust(hspace=0.5)
+plt.show()
