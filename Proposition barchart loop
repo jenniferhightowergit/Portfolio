@@ -1,0 +1,26 @@
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(len(cat_cols), 1, figsize=(12, 5 * len(cat_cols)))
+
+for ax, col in zip(axes, cat_cols):
+    props = results[col]['props']
+    
+    props.plot(
+        kind='bar',
+        stacked=True,
+        ax=ax,
+        color=['#d62728', '#ff7f0e', '#1f77b4'],
+        legend=False
+    )
+    
+    ax.set_title(col)
+    ax.set_ylabel('Proportion')
+    ax.tick_params(axis='x', labelrotation=90)
+
+# one legend for all plots
+handles, labels = axes[0].get_legend_handles_labels()
+fig.legend(handles, ['NCM within MC', 'MC only', 'Non-MC'], loc='upper right')
+
+plt.tight_layout()
+plt.subplots_adjust(hspace=0.5)
+plt.show()
