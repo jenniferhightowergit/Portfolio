@@ -1,0 +1,35 @@
+bins = [0, 7, 30, 60, 90, 180, 365, float('inf')]
+labels = ['0-7','7-30','30-60','60-90','90-180','180-365','365+']
+
+df['days_to_ncm_bucket'] = pd.cut(
+    df['days_to_ncm'],
+    bins=bins,
+    labels=labels,
+    right=False
+
+day_cols = [
+    'days_to_ncm',
+    'days_to_mc',
+    'days_between_mc'
+]
+
+day_cols = [col for col in df.columns if 'days' in col]
+
+for col in day_cols:
+    df[col + '_bucket'] = pd.cut(
+        df[col],
+        bins=bins,
+        labels=labels,
+        right=False
+    )
+
+
+df[col + '_bucket'] = df[col + '_bucket'].cat.add_categories(['No Data']).fillna('No Data')
+
+
+df['days_to_ncm_bucket'].value_counts().sort_index()
+
+
+
+
+)
