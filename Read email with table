@@ -1,0 +1,31 @@
+import win32com.client
+import pandas as pd
+
+subject_to_find = "Your Email Subject Here"
+
+outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+inbox = outlook.GetDefaultFolder(6)
+messages = inbox.Items
+messages.Sort("[ReceivedTime]", True)
+
+latest_msg = None
+
+for msg in messages:
+    try:
+        if subject_to_find.lower() in msg.Subject.lower():
+            latest_msg = msg
+            break
+    except Exception:
+        continue
+
+if latest_msg:
+    html = latest_msg.HTMLBody
+    tables = pd.read_html(html)
+
+    print(f"Found {len(tables)} table(s)")
+
+    for i, table in enumerate(tables):
+        print(f"\n--- Table {i} ---")
+        print(table.head())
+else:
+    print("No matching email found.")
