@@ -33,3 +33,33 @@ df['days_to_ncm_bucket'].value_counts().sort_index()
 
 
 )
+
+
+
+
+
+import numpy as np
+import pandas as pd
+
+day_cols = [
+    'days_to_ncm',
+    'days_to_mc',
+    'days_between_mc'
+]
+
+for col in day_cols:
+    
+    # make sure numeric
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+    
+    # create bucket columns manually
+    df[f'{col}_0_7'] = ((df[col] >= 0) & (df[col] <= 7)).astype(int)
+    df[f'{col}_8_30'] = ((df[col] >= 8) & (df[col] <= 30)).astype(int)
+    df[f'{col}_31_60'] = ((df[col] >= 31) & (df[col] <= 60)).astype(int)
+    df[f'{col}_61_90'] = ((df[col] >= 61) & (df[col] <= 90)).astype(int)
+    df[f'{col}_91_180'] = ((df[col] >= 91) & (df[col] <= 180)).astype(int)
+    df[f'{col}_181_365'] = ((df[col] >= 181) & (df[col] <= 365)).astype(int)
+    df[f'{col}_366_plus'] = (df[col] >= 366).astype(int)
+    
+    # optional: handle nulls explicitly
+    df[f'{col}_no_data'] = df[col].isna().astype(int)
